@@ -28,7 +28,7 @@ app.MapGet("/", () => "Hello!");
 app.MapGet("/officers", async (OfficerDb db) =>
     await db.Officers.ToListAsync());
 
-app.MapGet("/todoitems/{id}", async (int id, OfficerDb db) =>
+app.MapGet("/officers/{id}", async (int id, OfficerDb db) =>
     await db.Officers.FindAsync(id)
         is Officer officer
             ? Results.Ok(officer)
