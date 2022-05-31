@@ -85,7 +85,10 @@ class Officer
     public string? ImageURL { get; set; }
     public byte[]? Image { get; set; } = null;
     public string? Description { get; set; }
+    public int OfficeId { get; set; }
     public DateTime Created { get; set; }
+  
+
 }
 
 class OfficerDb : DbContext
