@@ -23,13 +23,25 @@ app.UseHttpsRedirection();
 app.MapGet("/", () => "Hello!");
 
 app.MapGet("/officers", async (OfficerDb db) =>
-    await db.Officers.ToListAsync());
+   await db.Officers.ToListAsync());
 
 app.MapGet("/officers/{id}", async (int id, OfficerDb db) =>
     await db.Officers.FindAsync(id)
         is Officer officer
             ? Results.Ok(officer)
             : Results.NotFound());
+
+//app.MapGet("/officers/{officeID}", async (int officeID, OfficerDb db) =>
+//    await db.Officers.FindAsync(officeID)
+//        is Officer officer
+//            ? Results.Ok(officer)
+//            : Results.NotFound());
+
+app.MapGet("/office/{OfficeID}", async (int OfficeID, OfficerDb db) =>
+    await db.Officers.Where(x => x.OfficeId == OfficeID).ToListAsync());
+
+
+
 
 app.MapPost("/officers", async (Officer officer, OfficerDb db) =>
 {
