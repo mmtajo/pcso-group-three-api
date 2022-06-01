@@ -59,6 +59,13 @@ app.MapPut("/officers/{id}", async (int id, Officer inputOfficer, OfficerDb db) 
     if (officer is null) return Results.NotFound();
 
     officer.Name = inputOfficer.Name;
+    officer.Position = inputOfficer.Position;
+	officer.Department = inputOfficer.Department;
+	officer.ImageURL = inputOfficer.ImageURL;
+    officer.Description = inputOfficer.Description;
+    officer.OfficeId = inputOfficer.OfficeId;
+
+
     //officer.IsComplete = inputTodo.IsComplete;
 
     await db.SaveChangesAsync();
@@ -95,8 +102,8 @@ class Officer
     public string? Position { get; set; }
     public string? Department { get; set; }
     public string? ImageURL { get; set; }
-    public byte[]? Image { get; set; } = null;
-    public string? Description { get; set; }
+	public byte[]? Image { get; set; } = null;
+	public string? Description { get; set; }
     public int OfficeId { get; set; }
     public DateTime Created { get; set; }
   
